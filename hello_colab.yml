@@ -1,0 +1,145 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyN//VzAKU3HxWSMMjiAL1uE",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/asivarama/Githubactions-Ansible/blob/main/hello_colab.yml\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 6,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "calOXc84jDtR",
+        "outputId": "e1af1f7f-bca8-479f-9184-1433c2a00259"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[33m\r0% [Working]\u001b[0m\r            \rHit:1 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  InRelease\n",
+            "Hit:2 https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/ InRelease\n",
+            "Get:3 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]\n",
+            "Hit:4 https://r2u.stat.illinois.edu/ubuntu jammy InRelease\n",
+            "Hit:5 http://archive.ubuntu.com/ubuntu jammy InRelease\n",
+            "Get:6 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]\n",
+            "Hit:7 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy InRelease\n",
+            "Hit:8 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu jammy InRelease\n",
+            "Hit:9 https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu jammy InRelease\n",
+            "Get:10 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]\n",
+            "Fetched 384 kB in 1s (289 kB/s)\n",
+            "Reading package lists... Done\n",
+            "Building dependency tree... Done\n",
+            "Reading state information... Done\n",
+            "36 packages can be upgraded. Run 'apt list --upgradable' to see them.\n",
+            "\u001b[1;33mW: \u001b[0mSkipping acquire of configured file 'main/source/Sources' as repository 'https://r2u.stat.illinois.edu/ubuntu jammy InRelease' does not seem to provide it (sources.list entry misspelt?)\u001b[0m\n",
+            "Reading package lists... Done\n",
+            "Building dependency tree... Done\n",
+            "Reading state information... Done\n",
+            "ansible is already the newest version (2.10.7+merged+base+2.10.8+dfsg-1).\n",
+            "0 upgraded, 0 newly installed, 0 to remove and 36 not upgraded.\n"
+          ]
+        }
+      ],
+      "source": [
+        "!sudo apt update\n",
+        "!sudo apt install -y ansible\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Step 1: Install Ansible\n",
+        "!sudo apt update && sudo apt install -y ansible\n",
+        "\n",
+        "# Step 2: Write a playbook file\n",
+        "playbook_content = \"\"\"\n",
+        "- name: Hello from Colab\n",
+        "  hosts: localhost\n",
+        "  gather_facts: false\n",
+        "  tasks:\n",
+        "    - name: Print Hello\n",
+        "      debug:\n",
+        "        msg: \"✅ Hello from Ansible running in Colab!\"\n",
+        "\"\"\"\n",
+        "\n",
+        "with open(\"hello_colab.yml\", \"w\") as f:\n",
+        "    f.write(playbook_content)\n",
+        "\n",
+        "# Step 3: Run the playbook\n",
+        "!ansible-playbook hello_colab.yml -i localhost,\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WzD_k1CBvzcZ",
+        "outputId": "3bf39c9c-8b28-4a76-f948-66ea353b2a92"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[33m\r0% [Working]\u001b[0m\r            \rHit:1 http://security.ubuntu.com/ubuntu jammy-security InRelease\n",
+            "\u001b[33m\r0% [Waiting for headers] [Connecting to cloud.r-project.org] [Connecting to r2u\u001b[0m\r                                                                               \rHit:2 http://archive.ubuntu.com/ubuntu jammy InRelease\n",
+            "\u001b[33m\r0% [Waiting for headers] [Connecting to cloud.r-project.org] [Connected to r2u.\u001b[0m\r                                                                               \rHit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease\n",
+            "\u001b[33m\r0% [Waiting for headers] [Connecting to cloud.r-project.org] [Connected to r2u.\u001b[0m\r                                                                               \rHit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease\n",
+            "Hit:5 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  InRelease\n",
+            "Hit:6 https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/ InRelease\n",
+            "Hit:7 https://r2u.stat.illinois.edu/ubuntu jammy InRelease\n",
+            "Hit:8 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy InRelease\n",
+            "Hit:9 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu jammy InRelease\n",
+            "Hit:10 https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu jammy InRelease\n",
+            "Reading package lists... Done\n",
+            "Building dependency tree... Done\n",
+            "Reading state information... Done\n",
+            "36 packages can be upgraded. Run 'apt list --upgradable' to see them.\n",
+            "\u001b[1;33mW: \u001b[0mSkipping acquire of configured file 'main/source/Sources' as repository 'https://r2u.stat.illinois.edu/ubuntu jammy InRelease' does not seem to provide it (sources.list entry misspelt?)\u001b[0m\n",
+            "Reading package lists... Done\n",
+            "Building dependency tree... Done\n",
+            "Reading state information... Done\n",
+            "ansible is already the newest version (2.10.7+merged+base+2.10.8+dfsg-1).\n",
+            "0 upgraded, 0 newly installed, 0 to remove and 36 not upgraded.\n",
+            "\n",
+            "PLAY [Hello from Colab] ********************************************************\n",
+            "\n",
+            "TASK [Print Hello] *************************************************************\n",
+            "\u001b[0;32mok: [localhost] => {\u001b[0m\n",
+            "\u001b[0;32m    \"msg\": \"✅ Hello from Ansible running in Colab!\"\u001b[0m\n",
+            "\u001b[0;32m}\u001b[0m\n",
+            "\n",
+            "PLAY RECAP *********************************************************************\n",
+            "\u001b[0;32mlocalhost\u001b[0m                  : \u001b[0;32mok=1   \u001b[0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n",
+            "\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
