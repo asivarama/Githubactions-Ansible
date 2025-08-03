@@ -21,4 +21,4 @@ jobs:
 
       - name: Run Playbook
         run: |
-          ansible-playbook Githubactions-Ansible/hello_playbook.yml -i localhost,
+          ansible-playbook hello_playbook.yml -i localhost,
