@@ -1,0 +1,24 @@
+name: Run Ansible in GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ansible-playbook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Ansible
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Run Playbook
+        run: |
+          ansible-playbook ansible/playbook.yml -i localhost,
