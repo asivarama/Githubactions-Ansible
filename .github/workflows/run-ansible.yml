@@ -21,4 +21,4 @@ jobs:
 
       - name: Run Playbook
         run: |
-          ansible-playbook ansible/playbook.yml -i localhost,
+          ansible-playbook ansible/hello_playbook.yml -i localhost,
